@@ -1,0 +1,19 @@
+{
+  "name": "@lldc/output-script",
+  "version": "0.0.1",
+  "description": "output db commands to a script to be run by a db client app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ll-dc/output-script.git"
+  },
+  "author": "LegallyLooking.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ll-dc/output-script/issues"
+  },
+  "homepage": "https://github.com/ll-dc/output-script#readme"
+}
