@@ -1,6 +1,6 @@
 {
   "name": "@lldc/output-script",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Output db commands to a script to be run by a db client app.",
   "main": "index.js",
   "scripts": {
