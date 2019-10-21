@@ -1,0 +1,38 @@
+-- mysql -h <hostname> -u <user> -p < <pathToFile>
+
+USE `<database>`;
+
+DROP PROCEDURE IF EXISTS  `<stored_procedure_name>`;
+DELIMITER $$
+
+CREATE PROCEDURE `<stored_procedure_name>`()
+BEGIN
+
+  DECLARE EXIT HANDLER FOR SQLEXCEPTION
+  BEGIN
+	GET DIAGNOSTICS CONDITION 1
+	@p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
+	SELECT @p1 as RETURNED_STATE  , @p2 as EXCEPTION_TEXT;
+	ROLLBACK;
+  END;
+
+  DECLARE EXIT HANDLER FOR SQLWARNING
+  BEGIN
+	GET DIAGNOSTICS CONDITION 1
+	@p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
+	SELECT @p1 as RETURNED_STATE  , @p2 as WARNING_TEXT;
+	ROLLBACK;
+  END;
+
+  START TRANSACTION;
+	INSERT INTO `tablea` (`date`) VALUES (NOW());
+	INSERT INTO `tableb` (`date`) VALUES (NOW());
+	INSERT INTO `tablec` (`date`) VALUES (NOW());
+  COMMIT;
+
+END$$
+
+DELIMITER ;
+
+CALL `<stored_procedure_name>`;
+DROP PROCEDURE IF EXISTS  `<stored_procedure_name>`;
